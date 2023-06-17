@@ -23,19 +23,17 @@ public class CurrentAccount extends BankAccount{
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
 
-        if(!numberIsValid(tradeLicenseId)){
-            String rearrangeId = rearrangeString(tradeLicenseId);
-
-            if(rearrangeId == ""){
+        if(!isNumberValid(tradeLicenseId)){
+            String rearrangedId = arrangeString(tradeLicenseId);
+            if(rearrangedId == ""){
                 throw new Exception("Valid License can not be generated");
-            }
-            else{
-                this.tradeLicenseId = rearrangeId;
+            }else{
+                this.tradeLicenseId = rearrangedId;
             }
         }
     }
 
-    public boolean numberIsValid(String tradeLicenseId){
+    public boolean isNumberValid(String tradeLicenseId){
 
 
         for(int i=0; i<tradeLicenseId.length()-1; i++){
@@ -46,7 +44,7 @@ public class CurrentAccount extends BankAccount{
         return true;
     }
 
-    public String rearrangeString(String s){
+    public String arrangeString(String s){
         int n = s.length();
 
         int[]count = new int[26];
