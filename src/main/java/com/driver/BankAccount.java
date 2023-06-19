@@ -36,32 +36,28 @@ public class BankAccount {
 
         int rem = sum;
         String accNo = "";
-
         if(digits*9 < sum){
             throw new Exception("Account Number can not be generated");
         }
         else{
-            while(rem>0){
-                while(digits > 0 && rem > 0){
-                    if(rem >= 9){
-                        rem = rem - 9;
-                        accNo = accNo + "9";
-                    }
-                    else{
-                        accNo = accNo + Integer.toString(rem);
-                        rem = 0;
-                    }
-                    digits--;
+            while(digits > 0 && rem > 0){
+                if(rem >= 9){
+                    rem = rem - 9;
+                    accNo = accNo + "9";
                 }
-                while(digits > 0){
-                    accNo = accNo + "0";
-                    digits--;
+                else{
+                    accNo = accNo + Integer.toString(rem);
+                    rem = 0;
                 }
-                return accNo;
+                digits--;
             }
+            while(digits > 0){
+                accNo = accNo + "0";
+                digits--;
+            }
+            return accNo;
         }
 
-        return accNo;
     }
 
     public void deposit(double amount) {
